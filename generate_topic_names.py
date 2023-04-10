@@ -3,6 +3,7 @@ import pandas as pd
 import openai
 import re
 import sys
+import time
 
 prompt = 'I will give you three company descriptions that belong in the same industry. Please come up with a name for the category in which all companies belong in, and be specific with the name while staying concise. Say nothing but the name of the category; do not add the word "Category" in front of your response.'
 api_key = '#############################'
@@ -12,7 +13,7 @@ def askGPT(text):
 
     openai.api_key = api_key
     response = openai.Completion.create(
-        engine="gpt-3.5-turbo",
+        engine='text-davinci-003',
         prompt=text,
         temperature=0.4,
         max_tokens=100
@@ -67,9 +68,10 @@ def generate_topic_names_from_docs():
         docs = df.iloc[i].tolist()
         print('Calling API for topic ' + str(i-1) + '...')
         name = askGPT(prompt + '\n\nCompany 1: ' + docs[0] + '\n\nCompany 2: ' + docs[1] + '\n\nCompany 3: ' + docs[2])
-        # filter punctuation using regex
-        name = re.sub(r'[^a-zA-Z0-9 ]', '', name)
-        names.append(name)
+        if name[-1] == '.':
+            name = name[:-1]
+        names.append(name.split('\n')[-1])
+        time.sleep(1)
 
     # export list to csv
     df = pd.DataFrame(names)

@@ -41,13 +41,13 @@ class Atlas:
         if isinstance(description, str):
             topic, prob = self.topic_model.transform(description)
             if topic[0] != -1:
-                return (topic[0], prob[0][topic[0]])
+                return (topic[0].item(), prob[0][topic[0]].item())
             else:
                 if len(topic) > 1:
-                    return (topic[1], prob[0][topic[1]])
+                    return (topic[1].item(), prob[0][topic[1]].item())
                 else:
                     # Return the index with the highest probability
-                    return (int(np.argmax(prob[0])), float(np.max(prob[0])))
+                    return (np.argmax(prob[0]).item(), np.max(prob[0]).item())
         elif isinstance(description, list):
             topics, probs = [], []
             for desc in description:
