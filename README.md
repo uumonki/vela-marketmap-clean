@@ -4,7 +4,7 @@ Atlas is an NLP-enabled automated market mapping tool. Through text embeddings a
 
 ## Dependencies
 
-The dependencies of this project are listed in dependencies.txt. Note that CUDA is required to use the pre-trained model.
+The dependencies of this project are listed in dependencies.txt. Note that CUDA is required to use the pre-trained model. The model is trained and tested using Python 3.9. Other versions of Python and dependencies were not tested.
 
 ## Report
 
@@ -12,7 +12,7 @@ It is recommended to read the project report first, in report.pdf.
  
 ## Using the model
 
-First, download the model from [Google Drive](drive.google.com) and place it in the /models directory. Then, import the Atlas class from atlas.py, which contains most of the commonly used functions to apply the pretrained model. One can also use ```from bertopic import BERTopic``` to use the functions implemented in the BERTopic module (see [documentation](https://maartengr.github.io/BERTopic/index.html)).
+First, download the model from [Google Drive]([drive.google.com](https://drive.google.com/file/d/1oqQPf0nFjk8HnwmowKIGM0UK4TB3Qu68/view?usp=share_link)) and place it in the /models directory. Then, import the Atlas class from atlas.py, which contains most of the commonly used functions to apply the pretrained model. One can also use ```from bertopic import BERTopic``` to use the functions implemented in the BERTopic module (see [documentation](https://maartengr.github.io/BERTopic/index.html)).
 
 The functions are outlined in demo.ipynb. First, instantiate an ```Atlas``` object with parameters ```model_path```, ```data_path```, and ```topic_names_path```.
 
